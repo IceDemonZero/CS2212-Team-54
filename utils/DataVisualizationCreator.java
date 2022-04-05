@@ -43,7 +43,7 @@ import strategy.Strategy_D;
  *
  * @author Jiangqi
  */
-public class DataVisualizationCreator {
+public class DataVisualizationCreator extends VisualizationSubject {
 
 	private ArrayList<TradeResult> resultList;
 	private ArrayList<Trader> traderList;
@@ -207,7 +207,7 @@ public class DataVisualizationCreator {
 				i++;
 			}
 		}
-
+		notifyObservers();
 		return i;
 	}
 

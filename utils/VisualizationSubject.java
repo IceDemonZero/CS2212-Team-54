@@ -3,6 +3,11 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Part of the observer design pattern.
+ * responsible for notifying the observers.
+ * @author Jay
+ */
 public abstract class VisualizationSubject {
     private List<Observer> observers = 	new ArrayList<>();
 

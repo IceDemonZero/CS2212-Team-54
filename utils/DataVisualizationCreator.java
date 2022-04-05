@@ -38,8 +38,9 @@ import strategy.Strategy_C;
 import strategy.Strategy_D;
 
 /**
- * This class creates the graphical data
- * displayed to the user interface.
+ * This class creates the graphical data displayed to the user interface.
+ * This class implements both the Observer and Facade
+ * design patterns.
  *
  * @author Jiangqi and Kostas Kontogiannis and Jay
  */
@@ -49,10 +50,13 @@ public class DataVisualizationCreator extends VisualizationSubject implements Ob
 	private ArrayList<Trader> traderList;
 	private Trade trade;
 
+	private boolean creating;
+
 	public DataVisualizationCreator(ArrayList<TradeResult> resultList, ArrayList<Trader> traderList) {
 		this.traderList = traderList;
 		trade = new Trade(traderList);
 		this.resultList = trade.getResultList();
+		stopCreation();
 	}
 
 	/**
@@ -214,50 +218,61 @@ public class DataVisualizationCreator extends VisualizationSubject implements Ob
 	/**
 	 * This method creates the bars in
 	 * the bar charts based on the frequencies.
+	 * creates
 	 */
 	private void createBar() {
-		
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		startCreation();
+		if(creating) {
+			DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-		for (Trader t : traderList) {
+			for (Trader t : traderList) {
 
-			String strategyName;
-			if (t.getStrategy().getClass().getName().equals("strategy.Strategy_A")) {
-				strategyName = Strategy_A.getInstance().getName();
-			}
-			else if (t.getStrategy().getClass().getName().equals("strategy.Strategy_B")) {
-				strategyName = Strategy_B.getInstance().getName();
-			}
-			else if (t.getStrategy().getClass().getName().equals("strategy.Strategy_C")) {
-				strategyName = Strategy_C.getInstance().getName();
-			}
-			else {
-				strategyName = Strategy_D.getInstance().getName();
+				String strategyName;
+				if (t.getStrategy().getClass().getName().equals("strategy.Strategy_A")) {
+					strategyName = Strategy_A.getInstance().getName();
+				} else if (t.getStrategy().getClass().getName().equals("strategy.Strategy_B")) {
+					strategyName = Strategy_B.getInstance().getName();
+				} else if (t.getStrategy().getClass().getName().equals("strategy.Strategy_C")) {
+					strategyName = Strategy_C.getInstance().getName();
+				} else {
+					strategyName = Strategy_D.getInstance().getName();
+				}
+
+				dataset.setValue(frequency(resultList, t.getName()), t.getName(), strategyName);
 			}
 
-			dataset.setValue(frequency(resultList, t.getName()), t.getName(), strategyName);
+			CategoryPlot plot = new CategoryPlot();
+			BarRenderer barrenderer1 = new BarRenderer();
+
+			plot.setDataset(0, dataset);
+			plot.setRenderer(0, barrenderer1);
+			CategoryAxis domainAxis = new CategoryAxis("Strategy");
+			plot.setDomainAxis(domainAxis);
+			LogAxis rangeAxis = new LogAxis("Actions(Buys or Sells)");
+			rangeAxis.setRange(new Range(0.1, 20.0));
+			plot.setRangeAxis(rangeAxis);
+
+			JFreeChart barChart = new JFreeChart("Actions Performed By Traders So Far", new Font("Serif", Font.BOLD, 18), plot,
+					true);
+
+			ChartPanel chartPanel = new ChartPanel(barChart);
+			chartPanel.setPreferredSize(new Dimension(600, 300));
+			chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			chartPanel.setBackground(Color.white);
+			MainUI.getInstance().updateStats(chartPanel);
 		}
-
-		CategoryPlot plot = new CategoryPlot();
-		BarRenderer barrenderer1 = new BarRenderer();
-
-		plot.setDataset(0, dataset);
-		plot.setRenderer(0, barrenderer1);
-		CategoryAxis domainAxis = new CategoryAxis("Strategy");
-		plot.setDomainAxis(domainAxis);
-		LogAxis rangeAxis = new LogAxis("Actions(Buys or Sells)");
-		rangeAxis.setRange(new Range(0.1,20.0));
-		plot.setRangeAxis(rangeAxis);
-
-		JFreeChart barChart = new JFreeChart("Actions Performed By Traders So Far", new Font("Serif", Font.BOLD, 18), plot,
-				true);
-
-		ChartPanel chartPanel = new ChartPanel(barChart);
-		chartPanel.setPreferredSize(new Dimension(600, 300));
-		chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		chartPanel.setBackground(Color.white);
-		MainUI.getInstance().updateStats(chartPanel);
+		stopCreation();
 	}
+
+	/**
+	 * Starts creation for creating bar charts.
+	 */
+	public void startCreation() { creating = true; }
+
+	/**
+	 * Starts creation of data (Facade design pattern).
+	 */
+	public void stopCreation() { creating = false; }
 
 	@Override
 	public void update(VisualizationSubject subject) {

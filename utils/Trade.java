@@ -9,7 +9,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * Perform trade for each broker and process results
+ * Perform trade for each broker and process results.
+ * @author Jiangqi
  */
 public class Trade {
     private ArrayList<Trader> traderList;

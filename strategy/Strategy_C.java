@@ -10,7 +10,7 @@ import java.util.HashMap;
  * 3rd of 4 strategies for trading
  * @author Nick
  */
-public class Strategy_C extends StrategyManufacturer_C implements AbstractStrategy {
+public class Strategy_C implements AbstractStrategy {
     private static final String name = "Strategy-C";
 
     private static Strategy_C instance;

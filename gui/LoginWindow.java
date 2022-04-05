@@ -19,7 +19,8 @@ public class LoginWindow extends GenericUI implements ActionListener {
     private JButton submitButton;
     private JPanel panel, submitPanel;
     private JLabel userLabel, pwLabel;
-    private JTextField userField, pwField;
+    private JTextField userField;
+    private JPasswordField pwField;
     private Authenticator authenticator;
     private GridBagConstraints constraints;
     private boolean loggedIn = false;
@@ -34,7 +35,7 @@ public class LoginWindow extends GenericUI implements ActionListener {
 
         pwLabel = new JLabel();
         pwLabel.setText("Password");
-        pwField = new JTextField(20);
+        pwField = new JPasswordField(20);
 
         submitPanel = new JPanel(new FlowLayout());
         submitButton = new JButton("Submit");
@@ -79,7 +80,7 @@ public class LoginWindow extends GenericUI implements ActionListener {
      */
     public void actionPerformed(ActionEvent actionEvent) {
         String username = userField.getText();
-        String password = pwField.getText();
+        String password = new String(pwField.getPassword());
 
         loggedIn = authenticator.authenticate(username, password);
         if (!loggedIn)

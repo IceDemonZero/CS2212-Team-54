@@ -10,7 +10,7 @@ import java.util.HashMap;
  * last of 4 strategies for computing trade data
  * @author Nick
  */
-public class Strategy_D extends StrategyManufacturer_D implements AbstractStrategy {
+public class Strategy_D implements AbstractStrategy {
     private static final String name = "Strategy-D";
 
     private static Strategy_D instance;

@@ -249,9 +249,6 @@ public class DataVisualizationCreator extends VisualizationSubject {
 		rangeAxis.setRange(new Range(0.1,20.0));
 		plot.setRangeAxis(rangeAxis);
 
-		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis
-		//plot.mapDatasetToRangeAxis(1, 1); // 2nd dataset to 2nd y-axis
-
 		JFreeChart barChart = new JFreeChart("Actions Performed By Traders So Far", new Font("Serif", Font.BOLD, 18), plot,
 				true);
 

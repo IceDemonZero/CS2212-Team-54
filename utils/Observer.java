@@ -1,5 +1,9 @@
 package utils;
 
+/**
+ * part of the observer design pattern
+ * @author Jay.
+ */
 public interface Observer {
-    public void update(VisualizationSubject subject);
+    void update(VisualizationSubject subject);
 }

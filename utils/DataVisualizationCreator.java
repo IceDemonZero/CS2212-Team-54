@@ -41,9 +41,9 @@ import strategy.Strategy_D;
  * This class creates the graphical data
  * displayed to the user interface.
  *
- * @author Jiangqi
+ * @author Jiangqi and Kostas Kontogiannis and Jay
  */
-public class DataVisualizationCreator extends VisualizationSubject {
+public class DataVisualizationCreator extends VisualizationSubject implements Observer{
 
 	private ArrayList<TradeResult> resultList;
 	private ArrayList<Trader> traderList;
@@ -207,7 +207,7 @@ public class DataVisualizationCreator extends VisualizationSubject {
 				i++;
 			}
 		}
-		notifyObservers();
+
 		return i;
 	}
 
@@ -259,4 +259,10 @@ public class DataVisualizationCreator extends VisualizationSubject {
 		MainUI.getInstance().updateStats(chartPanel);
 	}
 
+	@Override
+	public void update(VisualizationSubject subject) {
+		if (subject != null) {
+			notifyObservers();
+		}
+	}
 }

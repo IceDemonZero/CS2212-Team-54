@@ -52,6 +52,10 @@ public class DataVisualizationCreator extends VisualizationSubject implements Ob
 
 	private boolean creating;
 
+	/**
+	 * @param resultList
+	 * @param traderList
+	 */
 	public DataVisualizationCreator(ArrayList<TradeResult> resultList, ArrayList<Trader> traderList) {
 		this.traderList = traderList;
 		trade = new Trade(traderList);
@@ -94,11 +98,14 @@ public class DataVisualizationCreator extends VisualizationSubject implements Ob
 	
 		
 		scrollPane.setPreferredSize(new Dimension(800, 300));
-		table.setFillsViewportHeight(true);;
+		table.setFillsViewportHeight(true);
 		
 		MainUI.getInstance().updateStats(scrollPane);
 	}
 
+	/**
+	 * Creates a time series
+	 */
 	private void createTimeSeries() {
 		TimeSeries series1 = new TimeSeries("Bitcoin - Daily");
 		series1.add(new Day(13, 9, 2021), 50368.67);

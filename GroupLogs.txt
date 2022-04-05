@@ -12,8 +12,9 @@ Nick, Jay, Jiangqi, Lina |	April 2nd–April 5th   |	Corresponded over email abo
                          |                        | process; roles:                                        |
                          |                        | Nick: Coding for Strategy B to C, bugfixing and test   |
                          |                        | cases                                                  |
-                         |                        | Jay:
-                         |                        | Jiangqi: Coding except for Strategy B to C
+                         |                        | Jay: Javadoc comments, Design patterns (besides        |
+                                                  |  strategy design pattern), some code corrections       |
+                         |                        | Jiangqi: Coding except for Strategy B to C             |
                          |                        | Lina: provided updates/comments to classes written by  |
                          |                        | group and logged meetings                              |
 ------------------------------------------------------------------------------------------------------------

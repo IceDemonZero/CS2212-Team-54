@@ -20,6 +20,7 @@ public class Main {
 
         Authenticator auth = new Authenticator("pw.txt");
         GenericUI proxy = new LoginWindow(auth);
+        proxy.setTitle("Crypto Trading System Login");
         proxy.setVisible(true);
 
         proxy.addWindowListener(new java.awt.event.WindowAdapter() {

@@ -118,6 +118,7 @@ public class LoginWindow extends GenericUI implements ActionListener {
 
             mainUI.setExtendedState(JFrame.MAXIMIZED_BOTH);
             mainUI.setVisible(true);
+            mainUI.setTitle("Crypto Trading System");
             mainUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         }
         mainUI.request();

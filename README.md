@@ -10,3 +10,9 @@ The objectives of this project are the following: 1) allow the user to define tr
 
 Non-functional requirements such as the user interface and the targeted development environment are additional considerations within the context of platform deployment.
 
+### Instructions
+when executing the code the password is stored in the pw.txt in the root of the program.
+
+The username is: username and password is: password (both are lower case no spaces or anything extra
+
+Program should execute normally afterwards.

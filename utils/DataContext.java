@@ -1,7 +1,7 @@
 package utils;
 
 /**
- * Context class for observer design pattern
+ * Context class for strategy design pattern
  * @author Jay.
  */
 public class DataContext {
@@ -23,6 +23,11 @@ public class DataContext {
         this.strategy = strategy;
     }
 
+    /**
+     * Retrieve crypto data
+     * and retrieve pric for the given
+     * coin on method execution.
+     */
     public void execute() {
         strategy.getDataForCrypto(this, "", "");
         strategy.getPriceForCoin(this, "", "");
